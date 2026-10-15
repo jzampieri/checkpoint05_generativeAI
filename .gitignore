@@ -1,0 +1,10 @@
+.venv/
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+# pesos/adaptadores LoRA (gerados pelo notebook; grandes demais para o git)
+modelos/
+# banco é recriado de forma determinística pelo código
+data/loja.db
+.gradio/
+.claude/

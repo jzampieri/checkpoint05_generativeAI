@@ -1,0 +1,8 @@
+,val_acuracia,teste_acuracia,teste_match_exato,teste_sql_valido,val_loss_final,tempo_treino_s,vram_pico_GB,params_treinaveis_M,params_treinaveis_%,util_gpu_media_%,tempo_geracao_teste_s
+base_0.5B (sem treino),0.364,0.358,0.218,0.651,,,,,,,45.613
+E1_r8_atencao_lr2e-4,0.881,0.76,0.751,0.921,0.021,163.865,3.021,1.081,0.218,96.878,47.029
+E2_r16_todas_lr2e-4,0.898,0.79,0.786,0.969,0.017,224.403,3.76,8.798,1.75,97.52,47.428
+E3_r16_todas_lr2e-5,0.847,0.734,0.716,0.908,0.03,219.996,3.76,8.798,1.75,97.38,58.517
+E4_r64_todas_lr5e-4_3ep,0.941,0.69,0.681,0.934,0.022,326.594,4.269,35.193,6.65,97.67,51.705
+base_1.5B (sem treino),0.415,0.459,0.284,0.808,,,,,,,48.622
+E5_1.5B_r64_todas_lr5e-4_3ep,0.898,0.773,0.773,0.978,0.035,1094.999,4.638,73.859,4.566,99.746,68.255

@@ -1,0 +1,118 @@
+{"template": "receita_por_categoria", "pergunta": "Receita total agrupada por categoria.", "sql": "SELECT pr.categoria, SUM(i.quantidade * i.preco_unitario) AS receita FROM itens_pedido i JOIN produtos pr ON i.produto_id = pr.id GROUP BY pr.categoria ORDER BY receita DESC;"}
+{"template": "pedidos_mes_ano", "pergunta": "Pedidos feitos em janeiro/2024.", "sql": "SELECT COUNT(*) FROM pedidos WHERE strftime('%Y-%m', data_pedido) = '2024-01';"}
+{"template": "produtos_por_categoria", "pergunta": "Quantidade de produtos agrupada por categoria.", "sql": "SELECT categoria, COUNT(*) FROM produtos GROUP BY categoria;"}
+{"template": "pedidos_cidade_status", "pergunta": "Quantos pedidos entregues vieram de Curitiba?", "sql": "SELECT COUNT(*) FROM pedidos p JOIN clientes c ON p.cliente_id = c.id WHERE c.cidade = 'Curitiba' AND p.status = 'entregue';"}
+{"template": "clientes_por_estado", "pergunta": "Mostre a quantidade de clientes de cada estado, ordenada do maior para o menor.", "sql": "SELECT estado, COUNT(*) FROM clientes GROUP BY estado ORDER BY COUNT(*) DESC;"}
+{"template": "top_clientes_gasto", "pergunta": "Mostre os 5 clientes com maior soma de pedidos.", "sql": "SELECT c.nome, SUM(p.valor_total) AS total FROM clientes c JOIN pedidos p ON p.cliente_id = c.id GROUP BY c.id ORDER BY total DESC LIMIT 5;"}
+{"template": "quantidade_vendida_categoria", "pergunta": "Quantidade total vendida em Roupas.", "sql": "SELECT SUM(i.quantidade) FROM itens_pedido i JOIN produtos pr ON i.produto_id = pr.id WHERE pr.categoria = 'Roupas';"}
+{"template": "clientes_distintos_categoria", "pergunta": "Quantos clientes já compraram Esportes?", "sql": "SELECT COUNT(DISTINCT p.cliente_id) FROM pedidos p JOIN itens_pedido i ON i.pedido_id = p.id JOIN produtos pr ON pr.id = i.produto_id WHERE pr.categoria = 'Esportes';"}
+{"template": "conta_clientes_cidade", "pergunta": "Quantos clientes temos em Manaus?", "sql": "SELECT COUNT(*) FROM clientes WHERE cidade = 'Manaus';"}
+{"template": "ticket_medio_estado", "pergunta": "Ticket médio por estado do cliente.", "sql": "SELECT c.estado, AVG(p.valor_total) FROM pedidos p JOIN clientes c ON p.cliente_id = c.id GROUP BY c.estado;"}
+{"template": "conta_produtos_categoria", "pergunta": "Quantos itens de Brinquedos temos cadastrados?", "sql": "SELECT COUNT(*) FROM produtos WHERE categoria = 'Brinquedos';"}
+{"template": "media_pedidos_ano", "pergunta": "Média de valor por pedido no ano 2025.", "sql": "SELECT AVG(valor_total) FROM pedidos WHERE strftime('%Y', data_pedido) = '2025';"}
+{"template": "clientes_cadastrados_ano", "pergunta": "Clientes que entraram em 2025.", "sql": "SELECT nome FROM clientes WHERE strftime('%Y', data_cadastro) = '2025';"}
+{"template": "conta_pedidos_status", "pergunta": "Qual a quantidade de pedidos com status 'cancelado'?", "sql": "SELECT COUNT(*) FROM pedidos WHERE status = 'cancelado';"}
+{"template": "estoque_por_categoria", "pergunta": "Estoque agrupado por categoria.", "sql": "SELECT categoria, SUM(estoque) FROM produtos GROUP BY categoria;"}
+{"template": "top_produtos_vendidos", "pergunta": "Mostre os 3 itens que mais venderam.", "sql": "SELECT pr.nome, SUM(i.quantidade) AS total_vendido FROM itens_pedido i JOIN produtos pr ON i.produto_id = pr.id GROUP BY pr.id ORDER BY total_vendido DESC LIMIT 3;"}
+{"template": "clientes_estado", "pergunta": "Nomes dos clientes com estado igual a MG.", "sql": "SELECT nome FROM clientes WHERE estado = 'MG';"}
+{"template": "top_clientes_gasto", "pergunta": "Mostre os 10 clientes com maior soma de pedidos.", "sql": "SELECT c.nome, SUM(p.valor_total) AS total FROM clientes c JOIN pedidos p ON p.cliente_id = c.id GROUP BY c.id ORDER BY total DESC LIMIT 10;"}
+{"template": "produtos_categoria_preco_menor", "pergunta": "Produtos da categoria Eletrônicos com preço inferior a 200.", "sql": "SELECT nome, preco FROM produtos WHERE categoria = 'Eletrônicos' AND preco < 200;"}
+{"template": "pedidos_mais_caros_ano", "pergunta": "Mostre id e valor dos 5 maiores pedidos de 2024.", "sql": "SELECT id, valor_total FROM pedidos WHERE strftime('%Y', data_pedido) = '2024' ORDER BY valor_total DESC LIMIT 5;"}
+{"template": "preco_medio_categoria", "pergunta": "Preço médio da categoria Livros.", "sql": "SELECT AVG(preco) FROM produtos WHERE categoria = 'Livros';"}
+{"template": "preco_produto", "pergunta": "Preço do produto Teclado Mecânico Redragon.", "sql": "SELECT preco FROM produtos WHERE nome = 'Teclado Mecânico Redragon';"}
+{"template": "preco_produto", "pergunta": "Preço do produto Mouse Gamer Logitech.", "sql": "SELECT preco FROM produtos WHERE nome = 'Mouse Gamer Logitech';"}
+{"template": "pedidos_do_cliente", "pergunta": "Pedidos realizados por Rafael Carvalho.", "sql": "SELECT p.id, p.data_pedido, p.valor_total FROM pedidos p JOIN clientes c ON p.cliente_id = c.id WHERE c.nome = 'Rafael Carvalho';"}
+{"template": "maior_pedido", "pergunta": "Valor do maior pedido.", "sql": "SELECT MAX(valor_total) FROM pedidos;"}
+{"template": "faturamento_ano", "pergunta": "Receita total de pedidos entregues em 2024.", "sql": "SELECT SUM(valor_total) FROM pedidos WHERE status = 'entregue' AND strftime('%Y', data_pedido) = '2024';"}
+{"template": "clientes_cadastrados_ano", "pergunta": "Clientes que entraram em 2023.", "sql": "SELECT nome FROM clientes WHERE strftime('%Y', data_cadastro) = '2023';"}
+{"template": "clientes_distintos_categoria", "pergunta": "Quantos clientes já compraram Roupas?", "sql": "SELECT COUNT(DISTINCT p.cliente_id) FROM pedidos p JOIN itens_pedido i ON i.pedido_id = p.id JOIN produtos pr ON pr.id = i.produto_id WHERE pr.categoria = 'Roupas';"}
+{"template": "faturamento_ano", "pergunta": "Receita total de pedidos entregues em 2023.", "sql": "SELECT SUM(valor_total) FROM pedidos WHERE status = 'entregue' AND strftime('%Y', data_pedido) = '2023';"}
+{"template": "top_clientes_gasto", "pergunta": "Mostre os 3 clientes com maior soma de pedidos.", "sql": "SELECT c.nome, SUM(p.valor_total) AS total FROM clientes c JOIN pedidos p ON p.cliente_id = c.id GROUP BY c.id ORDER BY total DESC LIMIT 3;"}
+{"template": "conta_produtos_categoria", "pergunta": "Quantos itens de Esportes temos cadastrados?", "sql": "SELECT COUNT(*) FROM produtos WHERE categoria = 'Esportes';"}
+{"template": "produtos_nunca_vendidos", "pergunta": "Produtos que nunca venderam.", "sql": "SELECT nome FROM produtos WHERE id NOT IN (SELECT produto_id FROM itens_pedido);"}
+{"template": "conta_clientes_cidade", "pergunta": "Quantos clientes temos em Niterói?", "sql": "SELECT COUNT(*) FROM clientes WHERE cidade = 'Niterói';"}
+{"template": "produtos_categoria_preco_maior", "pergunta": "Produtos da categoria Esportes com preço superior a 1500.", "sql": "SELECT nome, preco FROM produtos WHERE categoria = 'Esportes' AND preco > 1500;"}
+{"template": "produtos_faixa_preco", "pergunta": "Produtos com preço entre 500 e 1500.", "sql": "SELECT nome, preco FROM produtos WHERE preco BETWEEN 500 AND 1500 ORDER BY preco;"}
+{"template": "conta_pedidos_status", "pergunta": "Qual a quantidade de pedidos com status 'enviado'?", "sql": "SELECT COUNT(*) FROM pedidos WHERE status = 'enviado';"}
+{"template": "produtos_faixa_preco", "pergunta": "Produtos com preço entre 100 e 300.", "sql": "SELECT nome, preco FROM produtos WHERE preco BETWEEN 100 AND 300 ORDER BY preco;"}
+{"template": "top_clientes_cidade_gasto", "pergunta": "Mostre os 10 clientes de Fortaleza com maior soma de pedidos.", "sql": "SELECT c.nome, SUM(p.valor_total) AS total FROM clientes c JOIN pedidos p ON p.cliente_id = c.id WHERE c.cidade = 'Fortaleza' GROUP BY c.id ORDER BY total DESC LIMIT 10;"}
+{"template": "top_produtos_vendidos", "pergunta": "Mostre os 10 itens que mais venderam.", "sql": "SELECT pr.nome, SUM(i.quantidade) AS total_vendido FROM itens_pedido i JOIN produtos pr ON i.produto_id = pr.id GROUP BY pr.id ORDER BY total_vendido DESC LIMIT 10;"}
+{"template": "preco_medio_categoria", "pergunta": "Preço médio da categoria Brinquedos.", "sql": "SELECT AVG(preco) FROM produtos WHERE categoria = 'Brinquedos';"}
+{"template": "conta_clientes_cidade", "pergunta": "Quantos clientes temos em Campinas?", "sql": "SELECT COUNT(*) FROM clientes WHERE cidade = 'Campinas';"}
+{"template": "top_produtos_baratos_categoria", "pergunta": "Mostre os 10 produtos de Roupas com os preços mais baixos.", "sql": "SELECT nome, preco FROM produtos WHERE categoria = 'Roupas' ORDER BY preco ASC LIMIT 10;"}
+{"template": "total_gasto_cliente", "pergunta": "Total gasto por Gustavo Fernandes.", "sql": "SELECT SUM(p.valor_total) FROM pedidos p JOIN clientes c ON p.cliente_id = c.id WHERE c.nome = 'Gustavo Fernandes';"}
+{"template": "email_cliente", "pergunta": "Email de Eduarda Carvalho.", "sql": "SELECT email FROM clientes WHERE nome = 'Eduarda Carvalho';"}
+{"template": "conta_clientes_estado", "pergunta": "Quantos clientes são do estado AM?", "sql": "SELECT COUNT(*) FROM clientes WHERE estado = 'AM';"}
+{"template": "conta_clientes_estado", "pergunta": "Quantos clientes são do estado PA?", "sql": "SELECT COUNT(*) FROM clientes WHERE estado = 'PA';"}
+{"template": "faturamento_ano", "pergunta": "Receita total de pedidos entregues em 2025.", "sql": "SELECT SUM(valor_total) FROM pedidos WHERE status = 'entregue' AND strftime('%Y', data_pedido) = '2025';"}
+{"template": "preco_medio_categoria", "pergunta": "Preço médio da categoria Eletrônicos.", "sql": "SELECT AVG(preco) FROM produtos WHERE categoria = 'Eletrônicos';"}
+{"template": "pedidos_mais_caros_ano", "pergunta": "Mostre id e valor dos 10 maiores pedidos de 2025.", "sql": "SELECT id, valor_total FROM pedidos WHERE strftime('%Y', data_pedido) = '2025' ORDER BY valor_total DESC LIMIT 10;"}
+{"template": "produtos_estoque_baixo", "pergunta": "Produtos com estoque inferior a 10.", "sql": "SELECT nome, estoque FROM produtos WHERE estoque < 10;"}
+{"template": "pedidos_do_cliente", "pergunta": "Pedidos realizados por Juliana Ribeiro.", "sql": "SELECT p.id, p.data_pedido, p.valor_total FROM pedidos p JOIN clientes c ON p.cliente_id = c.id WHERE c.nome = 'Juliana Ribeiro';"}
+{"template": "preco_produto", "pergunta": "Preço do produto Sapiens.", "sql": "SELECT preco FROM produtos WHERE nome = 'Sapiens';"}
+{"template": "clientes_cadastrados_ano", "pergunta": "Clientes que entraram em 2024.", "sql": "SELECT nome FROM clientes WHERE strftime('%Y', data_cadastro) = '2024';"}
+{"template": "produtos_estoque_baixo", "pergunta": "Produtos com estoque inferior a 5.", "sql": "SELECT nome, estoque FROM produtos WHERE estoque < 5;"}
+{"template": "clientes_estado", "pergunta": "Nomes dos clientes com estado igual a BA.", "sql": "SELECT nome FROM clientes WHERE estado = 'BA';"}
+{"template": "produtos_categoria_preco_menor", "pergunta": "Produtos da categoria Roupas com preço inferior a 500.", "sql": "SELECT nome, preco FROM produtos WHERE categoria = 'Roupas' AND preco < 500;"}
+{"template": "pedidos_acima_valor", "pergunta": "Pedidos com valor_total superior a 50.", "sql": "SELECT id, valor_total FROM pedidos WHERE valor_total > 50 ORDER BY valor_total DESC;"}
+{"template": "produtos_categoria_preco_maior", "pergunta": "Produtos da categoria Roupas com preço superior a 500.", "sql": "SELECT nome, preco FROM produtos WHERE categoria = 'Roupas' AND preco > 500;"}
+{"template": "pedidos_do_cliente", "pergunta": "Pedidos realizados por Leonardo Pereira.", "sql": "SELECT p.id, p.data_pedido, p.valor_total FROM pedidos p JOIN clientes c ON p.cliente_id = c.id WHERE c.nome = 'Leonardo Pereira';"}
+{"template": "ultimos_pedidos", "pergunta": "Os 10 pedidos mais recentes.", "sql": "SELECT id, data_pedido, valor_total FROM pedidos ORDER BY data_pedido DESC LIMIT 10;"}
+{"template": "pedidos_mes_ano", "pergunta": "Pedidos feitos em março/2023.", "sql": "SELECT COUNT(*) FROM pedidos WHERE strftime('%Y-%m', data_pedido) = '2023-03';"}
+{"template": "conta_pedidos_status", "pergunta": "Qual a quantidade de pedidos com status 'entregue'?", "sql": "SELECT COUNT(*) FROM pedidos WHERE status = 'entregue';"}
+{"template": "total_gasto_cliente", "pergunta": "Total gasto por Sofia Fernandes.", "sql": "SELECT SUM(p.valor_total) FROM pedidos p JOIN clientes c ON p.cliente_id = c.id WHERE c.nome = 'Sofia Fernandes';"}
+{"template": "preco_produto", "pergunta": "Preço do produto Jogo de Panelas Tramontina.", "sql": "SELECT preco FROM produtos WHERE nome = 'Jogo de Panelas Tramontina';"}
+{"template": "produtos_faixa_preco", "pergunta": "Produtos com preço entre 300 e 400.", "sql": "SELECT nome, preco FROM produtos WHERE preco BETWEEN 300 AND 400 ORDER BY preco;"}
+{"template": "top_produtos_vendidos", "pergunta": "Mostre os 5 itens que mais venderam.", "sql": "SELECT pr.nome, SUM(i.quantidade) AS total_vendido FROM itens_pedido i JOIN produtos pr ON i.produto_id = pr.id GROUP BY pr.id ORDER BY total_vendido DESC LIMIT 5;"}
+{"template": "conta_pedidos_status", "pergunta": "Qual a quantidade de pedidos com status 'pendente'?", "sql": "SELECT COUNT(*) FROM pedidos WHERE status = 'pendente';"}
+{"template": "pedidos_cidade_status", "pergunta": "Quantos pedidos enviados vieram de São Paulo?", "sql": "SELECT COUNT(*) FROM pedidos p JOIN clientes c ON p.cliente_id = c.id WHERE c.cidade = 'São Paulo' AND p.status = 'enviado';"}
+{"template": "conta_clientes_estado", "pergunta": "Quantos clientes são do estado MG?", "sql": "SELECT COUNT(*) FROM clientes WHERE estado = 'MG';"}
+{"template": "pedidos_cidade_status", "pergunta": "Quantos pedidos pendentes vieram de Florianópolis?", "sql": "SELECT COUNT(*) FROM pedidos p JOIN clientes c ON p.cliente_id = c.id WHERE c.cidade = 'Florianópolis' AND p.status = 'pendente';"}
+{"template": "conta_produtos_categoria", "pergunta": "Quantos itens de Eletrônicos temos cadastrados?", "sql": "SELECT COUNT(*) FROM produtos WHERE categoria = 'Eletrônicos';"}
+{"template": "pedidos_acima_valor", "pergunta": "Pedidos com valor_total superior a 1500.", "sql": "SELECT id, valor_total FROM pedidos WHERE valor_total > 1500 ORDER BY valor_total DESC;"}
+{"template": "clientes_estado", "pergunta": "Nomes dos clientes com estado igual a RS.", "sql": "SELECT nome FROM clientes WHERE estado = 'RS';"}
+{"template": "clientes_distintos_categoria", "pergunta": "Quantos clientes já compraram Brinquedos?", "sql": "SELECT COUNT(DISTINCT p.cliente_id) FROM pedidos p JOIN itens_pedido i ON i.pedido_id = p.id JOIN produtos pr ON pr.id = i.produto_id WHERE pr.categoria = 'Brinquedos';"}
+{"template": "pedidos_acima_valor", "pergunta": "Pedidos com valor_total superior a 1000.", "sql": "SELECT id, valor_total FROM pedidos WHERE valor_total > 1000 ORDER BY valor_total DESC;"}
+{"template": "top_produtos_baratos_categoria", "pergunta": "Mostre os 3 produtos de Brinquedos com os preços mais baixos.", "sql": "SELECT nome, preco FROM produtos WHERE categoria = 'Brinquedos' ORDER BY preco ASC LIMIT 3;"}
+{"template": "produtos_estoque_baixo", "pergunta": "Produtos com estoque inferior a 20.", "sql": "SELECT nome, estoque FROM produtos WHERE estoque < 20;"}
+{"template": "email_cliente", "pergunta": "Email de Bruno Santos.", "sql": "SELECT email FROM clientes WHERE nome = 'Bruno Santos';"}
+{"template": "pedidos_acima_valor", "pergunta": "Pedidos com valor_total superior a 2000.", "sql": "SELECT id, valor_total FROM pedidos WHERE valor_total > 2000 ORDER BY valor_total DESC;"}
+{"template": "ultimos_pedidos", "pergunta": "Os 5 pedidos mais recentes.", "sql": "SELECT id, data_pedido, valor_total FROM pedidos ORDER BY data_pedido DESC LIMIT 5;"}
+{"template": "top_clientes_cidade_gasto", "pergunta": "Mostre os 5 clientes de Santos com maior soma de pedidos.", "sql": "SELECT c.nome, SUM(p.valor_total) AS total FROM clientes c JOIN pedidos p ON p.cliente_id = c.id WHERE c.cidade = 'Santos' GROUP BY c.id ORDER BY total DESC LIMIT 5;"}
+{"template": "quantidade_vendida_categoria", "pergunta": "Quantidade total vendida em Brinquedos.", "sql": "SELECT SUM(i.quantidade) FROM itens_pedido i JOIN produtos pr ON i.produto_id = pr.id WHERE pr.categoria = 'Brinquedos';"}
+{"template": "total_gasto_cliente", "pergunta": "Total gasto por Daniel Carvalho.", "sql": "SELECT SUM(p.valor_total) FROM pedidos p JOIN clientes c ON p.cliente_id = c.id WHERE c.nome = 'Daniel Carvalho';"}
+{"template": "total_gasto_cliente", "pergunta": "Total gasto por Gabriela Martins.", "sql": "SELECT SUM(p.valor_total) FROM pedidos p JOIN clientes c ON p.cliente_id = c.id WHERE c.nome = 'Gabriela Martins';"}
+{"template": "pedidos_por_status", "pergunta": "Distribuição de pedidos por status.", "sql": "SELECT status, COUNT(*) FROM pedidos GROUP BY status;"}
+{"template": "email_cliente", "pergunta": "Email de Natália Costa.", "sql": "SELECT email FROM clientes WHERE nome = 'Natália Costa';"}
+{"template": "pedidos_cidade_status", "pergunta": "Quantos pedidos pendentes vieram de Salvador?", "sql": "SELECT COUNT(*) FROM pedidos p JOIN clientes c ON p.cliente_id = c.id WHERE c.cidade = 'Salvador' AND p.status = 'pendente';"}
+{"template": "conta_produtos_categoria", "pergunta": "Quantos itens de Roupas temos cadastrados?", "sql": "SELECT COUNT(*) FROM produtos WHERE categoria = 'Roupas';"}
+{"template": "quantidade_vendida_categoria", "pergunta": "Quantidade total vendida em Livros.", "sql": "SELECT SUM(i.quantidade) FROM itens_pedido i JOIN produtos pr ON i.produto_id = pr.id WHERE pr.categoria = 'Livros';"}
+{"template": "pedidos_mes_ano", "pergunta": "Pedidos feitos em setembro/2024.", "sql": "SELECT COUNT(*) FROM pedidos WHERE strftime('%Y-%m', data_pedido) = '2024-09';"}
+{"template": "conta_clientes_estado", "pergunta": "Quantos clientes são do estado RJ?", "sql": "SELECT COUNT(*) FROM clientes WHERE estado = 'RJ';"}
+{"template": "ultimos_pedidos", "pergunta": "Os 3 pedidos mais recentes.", "sql": "SELECT id, data_pedido, valor_total FROM pedidos ORDER BY data_pedido DESC LIMIT 3;"}
+{"template": "produtos_categoria_preco_maior", "pergunta": "Produtos da categoria Roupas com preço superior a 200.", "sql": "SELECT nome, preco FROM produtos WHERE categoria = 'Roupas' AND preco > 200;"}
+{"template": "pedidos_mais_caros_ano", "pergunta": "Mostre id e valor dos 5 maiores pedidos de 2025.", "sql": "SELECT id, valor_total FROM pedidos WHERE strftime('%Y', data_pedido) = '2025' ORDER BY valor_total DESC LIMIT 5;"}
+{"template": "media_pedidos_ano", "pergunta": "Média de valor por pedido no ano 2023.", "sql": "SELECT AVG(valor_total) FROM pedidos WHERE strftime('%Y', data_pedido) = '2023';"}
+{"template": "pedidos_mais_caros_ano", "pergunta": "Mostre id e valor dos 3 maiores pedidos de 2025.", "sql": "SELECT id, valor_total FROM pedidos WHERE strftime('%Y', data_pedido) = '2025' ORDER BY valor_total DESC LIMIT 3;"}
+{"template": "email_cliente", "pergunta": "Email de Leonardo Silva.", "sql": "SELECT email FROM clientes WHERE nome = 'Leonardo Silva';"}
+{"template": "produtos_faixa_preco", "pergunta": "Produtos com preço entre 100 e 600.", "sql": "SELECT nome, preco FROM produtos WHERE preco BETWEEN 100 AND 600 ORDER BY preco;"}
+{"template": "media_pedidos_ano", "pergunta": "Média de valor por pedido no ano 2024.", "sql": "SELECT AVG(valor_total) FROM pedidos WHERE strftime('%Y', data_pedido) = '2024';"}
+{"template": "clientes_estado", "pergunta": "Nomes dos clientes com estado igual a CE.", "sql": "SELECT nome FROM clientes WHERE estado = 'CE';"}
+{"template": "clientes_distintos_categoria", "pergunta": "Quantos clientes já compraram Eletrônicos?", "sql": "SELECT COUNT(DISTINCT p.cliente_id) FROM pedidos p JOIN itens_pedido i ON i.pedido_id = p.id JOIN produtos pr ON pr.id = i.produto_id WHERE pr.categoria = 'Eletrônicos';"}
+{"template": "produtos_estoque_baixo", "pergunta": "Produtos com estoque inferior a 50.", "sql": "SELECT nome, estoque FROM produtos WHERE estoque < 50;"}
+{"template": "pedidos_do_cliente", "pergunta": "Pedidos realizados por Camila Fernandes.", "sql": "SELECT p.id, p.data_pedido, p.valor_total FROM pedidos p JOIN clientes c ON p.cliente_id = c.id WHERE c.nome = 'Camila Fernandes';"}
+{"template": "top_produtos_caros", "pergunta": "Os 5 produtos com preço mais alto.", "sql": "SELECT nome, preco FROM produtos ORDER BY preco DESC LIMIT 5;"}
+{"template": "clientes_sem_pedidos", "pergunta": "Clientes sem pedidos registrados.", "sql": "SELECT nome FROM clientes WHERE id NOT IN (SELECT cliente_id FROM pedidos);"}
+{"template": "quantidade_vendida_categoria", "pergunta": "Quantidade total vendida em Esportes.", "sql": "SELECT SUM(i.quantidade) FROM itens_pedido i JOIN produtos pr ON i.produto_id = pr.id WHERE pr.categoria = 'Esportes';"}
+{"template": "produtos_categoria_preco_menor", "pergunta": "Produtos da categoria Brinquedos com preço inferior a 200.", "sql": "SELECT nome, preco FROM produtos WHERE categoria = 'Brinquedos' AND preco < 200;"}
+{"template": "pedidos_mes_ano", "pergunta": "Pedidos feitos em janeiro/2023.", "sql": "SELECT COUNT(*) FROM pedidos WHERE strftime('%Y-%m', data_pedido) = '2023-01';"}
+{"template": "top_produtos_baratos_categoria", "pergunta": "Mostre os 3 produtos de Eletrônicos com os preços mais baixos.", "sql": "SELECT nome, preco FROM produtos WHERE categoria = 'Eletrônicos' ORDER BY preco ASC LIMIT 3;"}
+{"template": "produtos_categoria_preco_menor", "pergunta": "Produtos da categoria Esportes com preço inferior a 500.", "sql": "SELECT nome, preco FROM produtos WHERE categoria = 'Esportes' AND preco < 500;"}
+{"template": "top_clientes_cidade_gasto", "pergunta": "Mostre os 5 clientes de Salvador com maior soma de pedidos.", "sql": "SELECT c.nome, SUM(p.valor_total) AS total FROM clientes c JOIN pedidos p ON p.cliente_id = c.id WHERE c.cidade = 'Salvador' GROUP BY c.id ORDER BY total DESC LIMIT 5;"}
+{"template": "top_produtos_baratos_categoria", "pergunta": "Mostre os 10 produtos de Eletrônicos com os preços mais baixos.", "sql": "SELECT nome, preco FROM produtos WHERE categoria = 'Eletrônicos' ORDER BY preco ASC LIMIT 10;"}
+{"template": "top_clientes_cidade_gasto", "pergunta": "Mostre os 3 clientes de Santos com maior soma de pedidos.", "sql": "SELECT c.nome, SUM(p.valor_total) AS total FROM clientes c JOIN pedidos p ON p.cliente_id = c.id WHERE c.cidade = 'Santos' GROUP BY c.id ORDER BY total DESC LIMIT 3;"}
+{"template": "conta_clientes_cidade", "pergunta": "Quantos clientes temos em Londrina?", "sql": "SELECT COUNT(*) FROM clientes WHERE cidade = 'Londrina';"}
+{"template": "top_produtos_caros", "pergunta": "Os 10 produtos com preço mais alto.", "sql": "SELECT nome, preco FROM produtos ORDER BY preco DESC LIMIT 10;"}
+{"template": "produtos_categoria_preco_maior", "pergunta": "Produtos da categoria Casa com preço superior a 2000.", "sql": "SELECT nome, preco FROM produtos WHERE categoria = 'Casa' AND preco > 2000;"}
+{"template": "preco_medio_categoria", "pergunta": "Preço médio da categoria Casa.", "sql": "SELECT AVG(preco) FROM produtos WHERE categoria = 'Casa';"}
+{"template": "top_produtos_caros", "pergunta": "Os 3 produtos com preço mais alto.", "sql": "SELECT nome, preco FROM produtos ORDER BY preco DESC LIMIT 3;"}

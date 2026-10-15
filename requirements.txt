@@ -1,0 +1,12 @@
+# PyTorch com CUDA: instale antes, pelo índice oficial (ver README)
+# pip install torch --index-url https://download.pytorch.org/whl/cu130
+torch>=2.9
+transformers>=5.0
+peft>=0.17
+accelerate
+gradio>=5.0
+pandas
+matplotlib
+nvidia-ml-py
+ipykernel
+jupyter
