@@ -21,6 +21,7 @@ O usuário digita a pergunta em um frontend web, a LLM gera o SQL e a consulta �
 
 ```
 ├── notebooks/treinamento_text2sql.ipynb   # notebook com TODO o treinamento e avaliação (executado, com saídas)
+├── notebooks/verificacao_gpu.ipynb        # verificação rápida da GPU (nvidia-smi, PyTorch/CUDA, teste de carga)
 ├── app.py                                 # frontend Gradio (prompt -> SQL -> resultado)
 ├── src/
 │   ├── banco.py       # cria o banco SQLite sintético da loja (data/loja.db)
@@ -79,7 +80,9 @@ Tamanhos: **1.026 treino / 118 validação / 229 teste**.
 | Driver / CUDA | driver 617.14 (CUDA 13.x) · PyTorch 2.14.1 + CUDA 13.0 · cuDNN 9.24 |
 | Utilização média da GPU nos treinos | 97–99 % (medido via NVML durante o treino) |
 
-Print da GPU instalada e funcionando dentro do VSCode:
+Print da GPU instalada e funcionando dentro do VSCode ([`notebooks/verificacao_gpu.ipynb`](notebooks/verificacao_gpu.ipynb)):
+a RTX 3050 é reconhecida pelo PyTorch com CUDA 13.0, e uma multiplicação de matrizes 4096×4096 em `bfloat16` roda
+18× mais rápido na GPU do que na CPU (13,7 TFLOPS).
 
 ![GPU no VSCode](docs/img/gpu_vscode.png)
 
@@ -218,7 +221,8 @@ python app.py
 
 | Nome | RM |
 |---|---|
-| | |
-| | |
-| | |
-| | |
+| Julio Cesar Zampieri | 98772 |
+| Bruno Venturi Lopes Vieira | 99431 |
+| Leonardo de Oliveira Ruiz | 98901 |
+| Ricardo Matos | 95906 |
+| João Gabriel Dias Nascimento | 99092 |
